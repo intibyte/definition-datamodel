@@ -1,7 +1,7 @@
 <template>
   <q-page padding>
 
-    <DataModelManager/>
+    <Abcd/>
 
   </q-page>
 </template>
