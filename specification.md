@@ -1,0 +1,49 @@
+# Datamodel Specification
+
+## Version: 1.0
+
+This document outlines the specification for defining data models in JSON format. Users can follow this specification to structure and organize entities and relationships within namespaces.
+
+## meta
+
+Each datamodel may include an optional `meta` field to provide additional context and information. This field can contain any data and is not mandatory.
+
+- **description:** A brief description of the datamodel.
+- **created_by:** The creator or maintainer of the datamodel.
+- **meta:** Additional meta specific to the datamodel, represented as an object. This field is optional.
+
+Example with optional meta:
+
+```json
+"datamodel": {
+  "description": "Example datamodel for a content management system",
+  "created_by": "John Doe",
+  "meta": {
+    "key1": "value1",
+    "key2": "value2"
+  }
+}
+```
+
+Namespaces
+
+Namespaces help organize entities into logical groups.
+
+name: The name of the namespace.
+meta: meta specific to the namespace.
+
+Example
+
+```json
+{
+  "name": "content",
+  "meta": {
+    "description": "Namespace for content-related entities",
+    "created_by": "John Doe",
+    "meta": {
+      "key3": "value3",
+      "key4": "value4"
+    }
+  }
+}
+```

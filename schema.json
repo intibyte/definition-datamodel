@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "spec_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "model": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "type": "string",
+          "pattern": "^\\d+\\.\\d+$"
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": true
+        },
+        "namespaces": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^([A-Z][a-zA-Z0-9_]*)+(\\.([A-Z_][a-zA-Z0-9_]*))*$"
+              },
+              "meta": {
+                "type": "object",
+                "additionalProperties": true
+              },
+              "entities": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "pattern": "^[A-Z][a-zA-Z0-9_]*$"
+                    },
+                    "fields": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string",
+                            "pattern": "^[a-z][a-zA-Z0-9_]*$"
+                          },
+                          "type": { "type": "string" },
+                          "primary_key": { "type": "boolean" },
+                          "foreign_key": { "type": "boolean" },
+                          "references": { "type": "string" }
+                        },
+                        "required": ["name", "type"]
+                      }
+                    }
+                  },
+                  "required": ["name", "fields"]
+                }
+              }
+            },
+            "required": ["name", "entities"]
+          }
+        },
+        "relationships": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "pattern": "^[a-z][a-zA-Z0-9_]*$"
+              },
+              "type": {
+                "type": "string",
+                "enum": ["one-to-one", "one-to-many", "many-to-one", "many-to-many"]
+              },
+              "from": { "type": "string" },
+              "to": { "type": "string" },
+              "from_field": { "type": "string" },
+              "to_field": { "type": "string" },
+              "through": { "type": "string" },
+              "through_field_from": { "type": "string" },
+              "through_field_to": { "type": "string" }
+            },
+            "required": ["name", "type", "from", "to", "from_field", "to_field"]
+          }
+        }
+      },
+      "required": ["version", "namespaces"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["spec_version", "model"],
+  "additionalProperties": false
+}
