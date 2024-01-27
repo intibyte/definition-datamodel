@@ -1,4 +1,5 @@
 import Ajv, { ValidateFunction } from 'ajv'
+import SCHEMA__1_0 from '../../../json-schemas/1.0.json'
 
 type Schema = object
 type DataModel = any
@@ -8,6 +9,20 @@ interface ValidationResult {
   valid: boolean
   schemaVersion: SchemaVersion
   errors?: ValidateFunction['errors']
+}
+
+export function determineSchemaVersionFromDataModel (dataModel: DataModel): SchemaVersion {
+  return (dataModel?.spec_version === '1.0')
+    ? '1.0'
+    : 'UNKNOWN'
+}
+
+export function getSchema (schemaVersion: SchemaVersion): Schema {
+  if (schemaVersion === '1.0') {
+    return SCHEMA__1_0
+  }
+
+  throw new Error('Unknown schema version')
 }
 
 export function validateAgainstSchema (schema: Schema, dataModel: DataModel): ValidationResult {
@@ -22,27 +37,6 @@ export function validateAgainstSchema (schema: Schema, dataModel: DataModel): Va
   }
 }
 
-export function determineSchemaVersionFromDataModel (dataModel: DataModel): SchemaVersion {
-  return (dataModel?.spec_version === '1.0')
-    ? '1.0'
-    : 'UNKNOWN'
-}
-
-export function getSchema (schemaVersion: SchemaVersion): Schema {
-  if (schemaVersion === 'UNKNOWN') {
-    throw new Error('Unknown schema version')
-  }
-
-  // download schema
-  // throw exception if cant
-  // alebo nebude downloadovat? bude to mat ulozene staticky?
-
-  // 1.0
-  return {
-    // TODO
-  }
-}
-
 export function validate (dataModel: DataModel): ValidationResult {
   const schemaVersion: SchemaVersion = determineSchemaVersionFromDataModel(dataModel)
 
@@ -53,7 +47,7 @@ export function validate (dataModel: DataModel): ValidationResult {
     }
   }
 
-  const schema: Schema | null = getSchema(schemaVersion)
+  const schema: Schema = getSchema(schemaVersion)
 
   return validateAgainstSchema(schema, dataModel)
 }

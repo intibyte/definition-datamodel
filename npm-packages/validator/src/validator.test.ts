@@ -1,7 +1,45 @@
-import { validate, validateAgainstSchema } from './validator'
+import SCHEMA__1_0 from '../../../json-schemas/1.0.json'
+import { determineSchemaVersionFromDataModel, getSchema, validate, validateAgainstSchema } from './validator'
+
+describe('determineSchemaVersionFromDataModel', () => {
+  it('should return 1.0', () => {
+    expect(determineSchemaVersionFromDataModel({ spec_version: '1.0' })).toBe('1.0')
+  })
+
+  it('should return UNKNOWN for 2.0', () => {
+    expect(determineSchemaVersionFromDataModel({ spec_version: '2.0' })).toBe('UNKNOWN')
+  })
+
+  it('should return UNKNOWN for {}', () => {
+    expect(determineSchemaVersionFromDataModel({})).toBe('UNKNOWN')
+  })
+
+  it('should return UNKNOWN for null', () => {
+    expect(determineSchemaVersionFromDataModel(null)).toBe('UNKNOWN')
+  })
+
+  it('should return UNKNOWN for undefined', () => {
+    expect(determineSchemaVersionFromDataModel(undefined)).toBe('UNKNOWN')
+  })
+})
+
+describe('getSchema', () => {
+  it('should return schema for version 1.0', () => {
+    expect(getSchema('1.0')).toBe(SCHEMA__1_0)
+  })
+
+  it('should throw error for unknown version', () => {
+    // expect(getSchema('UNKNOWN')).toThrowError('Unknown schema version')
+    // expect(getSchema('UNKNOWN')).toThrow()
+  })
+
+  it('should throw error for a random string version', () => {
+    //
+  })
+})
 
 describe('validateAgainstSchema', () => {
-  it('should return valid for a valid dataModel', () => {
+  it('should return valid result for a valid data model', () => {
     const schema = {
       type: 'object',
       properties: {
@@ -13,7 +51,7 @@ describe('validateAgainstSchema', () => {
     }
 
     const dataModel = {
-      property: 'test'
+      property: 'test',
     }
 
     const result = validateAgainstSchema(schema, dataModel)
@@ -22,7 +60,7 @@ describe('validateAgainstSchema', () => {
     expect(result.errors).toBeUndefined()
   })
 
-  it('should return invalid with errors for an invalid dataModel', () => {
+  it('should return invalid result with errors for an invalid data model', () => {
     const schema = {
       type: 'object',
       properties: {
@@ -40,7 +78,7 @@ describe('validateAgainstSchema', () => {
     const result = validateAgainstSchema(schema, dataModel)
 
     expect(result.valid).toBe(false)
-    // expect(result.errors).not.toBeUndefined()
+    expect(result.errors).not.toBeUndefined()
   })
 })
 
@@ -176,7 +214,7 @@ describe('validate', () => {
         ],
         'relationships': [
           {
-            'name': 'content.Article_Comments',
+            'name': 'comments',
             'type': 'one-to-many',
             'from': 'content.Article',
             'to': 'content.Comment',
@@ -184,7 +222,7 @@ describe('validate', () => {
             'to_field': 'article_id'
           },
           {
-            'name': 'content.Article_Category',
+            'name': 'categories',
             'type': 'many-to-many',
             'from': 'content.Article',
             'to': 'content.Category',
@@ -195,7 +233,7 @@ describe('validate', () => {
             'through_field_to': 'category_id'
           },
           {
-            'name': 'content.Article_Tags',
+            'name': 'tags',
             'type': 'many-to-many',
             'from': 'content.Article',
             'to': 'content.Tag',
@@ -206,7 +244,7 @@ describe('validate', () => {
             'through_field_to': 'tag_id'
           },
           {
-            'name': 'interaction.User_Likes',
+            'name': 'likes',
             'type': 'one-to-many',
             'from': 'interaction.User',
             'to': 'interaction.Like',
@@ -214,7 +252,7 @@ describe('validate', () => {
             'to_field': 'user_id'
           },
           {
-            'name': 'content.Article_Likes',
+            'name': 'articles',
             'type': 'many-to-many',
             'from': 'interaction.Like',
             'to': 'content.Article',
@@ -224,7 +262,6 @@ describe('validate', () => {
             'through_field_from': 'like_id',
             'through_field_to': 'article_id'
           },
-          // ... other relationships
         ]
       }
     }
@@ -232,6 +269,7 @@ describe('validate', () => {
     const result = validate(dataModel)
 
     expect(result.valid).toBe(true)
+    expect(result.schemaVersion).toBe('1.0')
     expect(result.errors).toBeUndefined()
   })
 
@@ -243,6 +281,7 @@ describe('validate', () => {
     const result = validate(dataModel)
 
     expect(result.valid).toBe(false)
+    expect(result.schemaVersion).toBe('UNKNOWN')
     // expect(result.errors).not.toBeUndefined()
   })
 })
