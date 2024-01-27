@@ -29,12 +29,11 @@ describe('getSchema', () => {
   })
 
   it('should throw error for unknown version', () => {
-    // expect(getSchema('UNKNOWN')).toThrowError('Unknown schema version')
-    // expect(getSchema('UNKNOWN')).toThrow()
+    expect(() => getSchema('UNKNOWN')).toThrow(/Unknown schema version/)
   })
 
   it('should throw error for a random string version', () => {
-    //
+    expect(() => getSchema('asddsadsaasd')).toThrow(/Unknown schema version/)
   })
 })
 

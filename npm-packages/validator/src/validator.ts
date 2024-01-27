@@ -17,7 +17,7 @@ export function determineSchemaVersionFromDataModel (dataModel: DataModel): Sche
     : 'UNKNOWN'
 }
 
-export function getSchema (schemaVersion: SchemaVersion): Schema {
+export function getSchema (schemaVersion: SchemaVersion | any): Schema {
   if (schemaVersion === '1.0') {
     return SCHEMA__1_0
   }
