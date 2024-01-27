@@ -281,6 +281,5 @@ describe('validate', () => {
 
     expect(result.valid).toBe(false)
     expect(result.schemaVersion).toBe('UNKNOWN')
-    // expect(result.errors).not.toBeUndefined()
   })
 })
