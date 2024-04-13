@@ -1,4 +1,4 @@
-import SCHEMA__1_0 from '../../../json-schemas/1.0.json'
+import SCHEMA__1_0 from '../../data-model-json-schema/1.0.json'
 import { determineSchemaVersionFromDataModel, getSchema, validate, validateAgainstSchema } from './validator'
 
 describe('determineSchemaVersionFromDataModel', () => {

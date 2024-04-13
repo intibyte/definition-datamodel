@@ -1,19 +1,50 @@
 # CMS / CRM
 
-## TODO List na dokončenie systému
+# Big Picture pohľad na systém
 
-Potrebujem navrhnúť a implementovať tieto moduly:
+## Čo chcem
 
-    [?] auth
-    [?] roles & permissions
-    [?] settings
-    [?] file manager
-    [ ] CRUD
-        [X] specification
-        [X] validator
-        [ ] Vue manager component
+- Rozdeliť systém na malé časti
+    - ktoré budú od seba oddelené
+    - každá bude mať stanovené svoje responsibilities
+- Tieto "časti" nie sú len kusy kódu alebo repozitáre, môže to byť čokľvek
+    - moduly
+    - špecifikácie
+    - JSON schémy
+    - npm moduly
+    - Vue componenty
+    - composer PHP packages
+    - Laravel projekty
+    - atď.
 
-*? znamená, že mám implementovanú starú veriu, ale neviem či ju použijem alebo spravím novú.*
+## Identifikované časti
+
+- data model JSON schéma - JSON Schema dokument
+- data model špecifikácie pre ľudí
+- data model validátor - nejaký NPM package + môžem spraviť aj nejakú Electron appku k tomu a pod. alebo nejaký CLI
+  command a pod.
+- data model dokument - konktérny JSON súbor obsahujúci definíciu nejakého dátového modelu napr. pre eshop a pod.
+- Vue data model manager pomocou ktorého si user bude vedieť vyklikať svoj dátový model
+- Data Model Manager App - môže byť implementované ako Elector appka napr. a bude vlastne iba zaobalovať "Vue data model
+  manager" časť
+
+# Flow
+
+1. User si zadefinuje svoj dátový model
+    - Ručne tak že vytvorí JSON súbor
+    - Vykliká pomocou Data Model Manager App
+2. User má niekde nainštalovanú svoju appku (eshop, blog ...) a tam niekde bude mať button že "Apply Data Model".
+3. Vyberie súbor
+4. Uploadne
+5. Na backende sa spustí:
+    - Validátor môže overiť či je ten dátový model validný
+    - Identifikujú sa potrebné zmeny oproti súččasnému stavu
+    - Môže to byť tak spravené ako v kubernetese - orchestrátor sa snaží z as-is prejsť do stavu to-be
+    - Tým sa spustia tie reflektory
+        - Updatne sa štruktúra DB
+        - Vytvoria sa Eloquent modely
+        - Vytvorí sa nový CRUD
+        - atď.
 
 ## Čo myslím pod jednotlivými modulmi:
 
@@ -49,7 +80,7 @@ Potrebujem navrhnúť a implementovať tieto moduly:
 	[ ] vizualny editor - web-based software (da sa zbuildit ako electrom, pwa, spa ...) na editovanie takych JSONov
 
 	to je "Datamodel JSON definition", ale potom potrebujem nieco ako "Resource JSON definition" (datamodel je akoby databaza, resource su uz GUI entity ktore viem editovat, nemusi to byt jedna k jednej s databazou)
-	tie "Resource" by mali definovat napr. validacne pravidla, nejake vizualne veci (ako bude vzyerat editovaci formular a pod.)
+	tie "Resource" by mali definovat napr. validacne pravidla, nejake vizualne veci (ako bude vyzerat editovaci formular a pod.)
 	takze to bude vlastne samostatna JSON schema nejaka ina ako ta "datamodel definicia", bude to skratka oddelene
 
 	tool "datamodel validator" - na vstupe dostane datamodel (ten by mal obsahovat verziu specifikacie) a na vystupe povie ci je ok alebo nie. Ak nie je, optionally moze vratit aj nejaky zoznam "chyb"
@@ -69,7 +100,7 @@ Potrebujem navrhnúť a implementovať tieto moduly:
 
 	- Consider providing integrations or plugins for popular development tools, IDEs, or continuous integration platforms to enable seamless validation during the development process.
 
-#### Git Repos Structure
+#### EXAMPLE Git Repos Structure (iba nápad)
 
 	- *-specification - human readable specification
 	- *-schema - computer-readable JSON Schema
