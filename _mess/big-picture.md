@@ -1,16 +1,35 @@
-# Auth
+# CMS / CRM
+
+## TODO List na dokončenie systému
+
+Potrebujem navrhnúť a implementovať tieto moduly:
+
+    [?] auth
+    [?] roles & permissions
+    [?] settings
+    [?] file manager
+    [ ] CRUD
+        [X] specification
+        [X] validator
+        [ ] Vue manager component
+
+*? znamená, že mám implementovanú starú veriu, ale neviem či ju použijem alebo spravím novú.*
+
+## Čo myslím pod jednotlivými modulmi:
+
+#### Auth
 
 	- login
 	- register
 	- prihlasovanie cez google
 	- rozdelit na BE / FE
 
-# Roles & Permissions
+#### Roles & Permissions
 
 	- spatie ?
 	- rozdelit na BE / FE
 
-# Settings
+#### Settings
 
 	- global settings
 	- chcelo by to mozno tiez dorobit nejaky "editor" + JSON schemu tak ako pri crude, proste by som zadefinoval ake settingy existuju
@@ -18,14 +37,14 @@
 	- jej sucastou by mohla byt aj validacia
 	- na jej zaklade by sa potom "vygenerovalo" GUIko pre editaciu tych settings
 
-# File Manager
+#### File Manager
 
 	- hmm... ?
 	- rozdelit na BE / FE
 
-# CRUD
+#### CRUD
 
-	[X] struktura JSONu na definovanie entit a vztahov
+	[X] struktura JSONu na definovanie entit a vztahov (MD dokument pre ľudí)
 	[X] nejaka validacia toho JSONu - napr. JSON schema
 	[ ] vizualny editor - web-based software (da sa zbuildit ako electrom, pwa, spa ...) na editovanie takych JSONov
 
@@ -44,11 +63,13 @@
 
 ---------------------------------
 
-# Dobre napdy AI
+## Poznámky
+
+#### Dobre napdy AI
 
 	- Consider providing integrations or plugins for popular development tools, IDEs, or continuous integration platforms to enable seamless validation during the development process.
 
-# Git Repos Structure
+#### Git Repos Structure
 
 	- *-specification - human readable specification
 	- *-schema - computer-readable JSON Schema
