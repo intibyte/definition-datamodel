@@ -14,12 +14,24 @@ describe('determineSchemaVersionFromDataModel', () => {
     expect(determineSchemaVersionFromDataModel({})).toBe('UNKNOWN')
   })
 
+  it('should return UNKNOWN for []', () => {
+    expect(determineSchemaVersionFromDataModel([])).toBe('UNKNOWN')
+  })
+
   it('should return UNKNOWN for null', () => {
     expect(determineSchemaVersionFromDataModel(null)).toBe('UNKNOWN')
   })
 
   it('should return UNKNOWN for undefined', () => {
     expect(determineSchemaVersionFromDataModel(undefined)).toBe('UNKNOWN')
+  })
+
+  it('should return UNKNOWN for a random string (valid JSON)', () => {
+    expect(determineSchemaVersionFromDataModel('"asddsadsaasd"')).toBe('UNKNOWN')
+  })
+
+  it('should return UNKNOWN for a random string (invalid JSON)', () => {
+    expect(determineSchemaVersionFromDataModel('asddsadsaasd')).toBe('UNKNOWN')
   })
 })
 
