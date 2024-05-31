@@ -286,6 +286,35 @@ describe('validate', () => {
 
   it('should return invalid with errors for invalid 1.0 dataModel', () => {
     const dataModel = {
+      'spec_version': '1.0',
+      'model': {
+        'version': '1.0',
+        'meta': {
+          'description': 'My example dataModel',
+          'created_by': 'John Doe'
+        },
+        'test': [
+          {
+            'name': 'User',
+            'fields': [
+              { 'name': 'id', 'type': 'integer', 'primary_key': true },
+              { 'name': 'name', 'type': 'string' },
+              { 'name': 'created_at', 'type': 'datetime' }
+            ]
+          }
+        ]
+      }
+    }
+
+    const result = validate(dataModel)
+
+    expect(result.valid).toBe(false)
+    expect(result.schemaVersion).toBe('1.0')
+    expect(result.errors).not.toBeUndefined()
+  })
+
+  it('should return invalid for invalid dataModel', () => {
+    const dataModel = {
       property: 'test'
     }
 
