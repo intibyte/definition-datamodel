@@ -1,5 +1,17 @@
 # CMS / CRM
 
+# Aktuálny stav
+
+- Systém
+    - [ ] priprav backend module ako fresh laravel
+    - [ ] priprav frontend module ako fresh Quasar
+    - [ ] implementuj prihlasovanie / odhlasovanie
+- CRUD
+    - Mám zadefinovanú JSON schému
+    - Mám spravený validátor ako npm-package ktorý exportuje `validate` funkciu na validovanie.
+    - Ďalšie kroky by mali byť:
+        - [ ] Spraviť Vue component (možno ako Quasar app-extension) na editáciu tých JSONov
+
 # Big Picture pohľad na systém
 
 ## Čo chcem
@@ -7,6 +19,8 @@
 - Rozdeliť systém na malé časti
     - ktoré budú od seba oddelené
     - každá bude mať stanovené svoje responsibilities
+    - pri vývoji každen časti rozmýšlaj len nad danou časťou, nie nad celým systémom
+    - systém by mal "vzniknúť" ako suma častí
 - Tieto "časti" nie sú len kusy kódu alebo repozitáre, môže to byť čokľvek
     - moduly
     - špecifikácie
@@ -19,11 +33,12 @@
 
 ## Identifikované časti
 
-- data model JSON schéma - JSON Schema dokument
-- data model špecifikácie pre ľudí
+- data model dokument - konktérny JSON súbor obsahujúci definíciu nejakého dátového modelu napr. pre eshop a pod.
+- data model JSON schéma - JSON Schema dokument, ktorý popisuje pravidlá, ako maju vyzerať "JSON data modely", čo sú
+  JSON súbory obsahujúce informácie o nejakom dátovom modeli, napr. eshop, blog a pod.
+- data model špecifikácie pre ľudí - to isté ale čitateľné pre ľudí
 - data model validátor - nejaký NPM package + môžem spraviť aj nejakú Electron appku k tomu a pod. alebo nejaký CLI
   command a pod.
-- data model dokument - konktérny JSON súbor obsahujúci definíciu nejakého dátového modelu napr. pre eshop a pod.
 - Vue data model manager pomocou ktorého si user bude vedieť vyklikať svoj dátový model
 - Data Model Manager App - môže byť implementované ako Elector appka napr. a bude vlastne iba zaobalovať "Vue data model
   manager" časť
@@ -118,3 +133,9 @@
 		- datamodel-schema
 		- datamodel-validator-package
 		- datamodel-validator-app
+
+## Nápady
+
+    - JSON dokument bude obsahovať charakteristiku systému (ako vyzerá databáza; ake tabulky, entity a pod.; napr. ake permissiony; ake settings; ake "resources"; ake "views"; ake "role" atd atd atd ...)
+    - Nasledne nad tymito JSON dokumentami môžem spraviť nejaké tooly ktoré budú podľa toho generovať kód / genericky zobrazovať veci (tabulky, formuláre atď.)
+    - Ako zakomponujem AI: Prikázať AI aby mi na základe vstupov generovala také JSONy ako potrebujem.
