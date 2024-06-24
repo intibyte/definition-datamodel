@@ -1,5 +1,26 @@
 # CMS / CRM
 
+# Čo vlastne chcem dosiahnuť?
+
+**Starý prístup**:
+
+1. požiadavky zákazníka
+2. špecifikácia
+3. implementácia
+4. testovanie
+5. výsledný produkt
+
+**Nový prístup**:
+
+1. požiadavky zákazníka
+2. **špecifikácia do JSON súborov podľa vopred zadefinovanej schémy**
+3. **tool ktorý na základe špecifikácie rovno vytvorí výsledný produkt**
+4. výsledný produkt
+
+Transformovanie požiadaviek zákazníka do JSON špecifikácie môže robiť AI.
+
+**Takže vo výsledku user iba diktuje požiadavky do AI a ako výsledok user dostáva hotový produkt.**
+
 # Aktuálny stav
 
 - Systém
