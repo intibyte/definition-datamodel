@@ -11,6 +11,7 @@ Chcem spravit appku (Vue component) ktora:
 - hint: [tento package](https://github.com/nymphaea-v1/quasar-app-extension-q-tel-input/tree/master/ui) pouziva .vue
   subory
   vnutri app-extension
+- naštuduj toto: https://quasar.dev/app-extensions/introduction#what-can-an-app-extension-do
 
 ### 2. krok
 
