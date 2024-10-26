@@ -8,6 +8,9 @@ Chcem spravit appku (Vue component) ktora:
 
 - bude vediet vytvarat/upravovat datamodely (nieco ako UML class diagram)
 - tieto datamodely ukladat do JSON (suborov)
+- hint: [tento package](https://github.com/nymphaea-v1/quasar-app-extension-q-tel-input/tree/master/ui) pouziva .vue
+  subory
+  vnutri app-extension
 
 ### 2. krok
 
