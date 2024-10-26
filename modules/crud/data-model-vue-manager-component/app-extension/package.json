@@ -12,7 +12,7 @@
   "bugs": "",
   "homepage": "",
   "dependencies": {
-    "quasar-ui-data-model-manager": "latest"
+    "quasar-ui-data-model-manager": "^0.0.1"
   },
   "engines": {
     "node": ">= 8.9.0",
