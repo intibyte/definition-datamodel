@@ -4,11 +4,17 @@
   >
 
     <template v-slot:before>
-      <namespace-editor/>
+      <namespace-editor
+        v-model:data-model="dataModel"
+        v-model:selected-namespace="selectedNamespace"
+      />
     </template>
 
     <template v-slot:after>
-      <data-model-editor/>
+      <data-model-editor
+        v-model:data-model="dataModel"
+        v-model:selected-namespace="selectedNamespace"
+      />
     </template>
 
 
@@ -28,6 +34,11 @@ defineOptions({
 const dataModel = defineModel({
   type: Object,
   required: true
+})
+
+const selectedNamespace = defineModel('selectedNamespace', {
+  type: String,
+  default: ''
 })
 
 const splitterModel = ref(20)

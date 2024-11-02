@@ -4,7 +4,7 @@
       <q-toolbar>
 
         <q-toolbar-title>
-          Quasar App
+          Data Model Manager
         </q-toolbar-title>
 
         <div>Quasar v{{ $q.version }}</div>
