@@ -6,7 +6,7 @@
       style="min-height: 400px;"
     />
 
-    <pre  class="bg-dark q-ma-none q-pa-xl">{{ dataModel }}</pre>
+    <pre class="bg-dark q-ma-none q-pa-xl">{{ dataModel }}</pre>
 
   </q-page>
 </template>

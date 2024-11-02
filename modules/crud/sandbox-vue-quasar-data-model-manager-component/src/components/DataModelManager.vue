@@ -5,6 +5,7 @@
 
     <template v-slot:before>
       <namespace-editor
+        class="q-pa-sm"
         v-model:data-model="dataModel"
         v-model:selected-namespace="selectedNamespace"
       />
@@ -12,6 +13,7 @@
 
     <template v-slot:after>
       <data-model-editor
+        v-if="selectedNamespace"
         v-model:data-model="dataModel"
         v-model:selected-namespace="selectedNamespace"
       />
@@ -33,7 +35,6 @@ defineOptions({
 
 const dataModel = defineModel({
   type: Object,
-  required: true
 })
 
 const selectedNamespace = defineModel('selectedNamespace', {
