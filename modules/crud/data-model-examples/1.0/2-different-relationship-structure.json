@@ -1,0 +1,9 @@
+{
+  "type": "one-to-many",
+  "left_name": "comments",
+  "left_model": "content.Article",
+  "left_field": "id",
+  "right_name": "article",
+  "right_model": "content.Comment",
+  "right_field": "article_id"
+}
