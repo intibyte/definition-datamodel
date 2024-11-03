@@ -2,9 +2,9 @@
 
 *Zatial zabudni na webove appky, databazu, Quasar, Vue, Laravel ...*
 
-### 1. krok
+### 1. krok - Data Model Manager
 
-Chcem spravit appku (Vue component) ktora:
+Chcem spravit appku (Quasar App Extension + Electron) ktora:
 
 - bude vediet vytvarat/upravovat datamodely (nieco ako UML class diagram)
 - tieto datamodely ukladat do JSON (suborov)
@@ -13,20 +13,31 @@ Chcem spravit appku (Vue component) ktora:
   vnutri app-extension
 - naštuduj toto: https://quasar.dev/app-extensions/introduction#what-can-an-app-extension-do
 
-### 2. krok
+### 2. krok - Reflector
 
-Chcem spravit appku (Vue component) ktory bude vediet vytvarat/upravovat resource-modely. Resource moze byt
-jedna-k-jednej s entitami z datamodelu, ale nemusi. Pre jednu entitu z datamodelu moze existovat aj viac resources.
-Napr. pre entitu user mozu byt 3 resources: admin, worker, contractor. Kazdy resource potom moze mat "views" (tabulky)
-a "forms" atd. Neviem, nad tym sa este zamysliet ako to spravit flexibilne.
-
-### 3. krok
-
-Sprav niečo, čo by vedelo na zaklade JSON datamodelu spraviť:
+Sprav CLI tool (v hocijakom jazyku), ktorý bude vedieť na základe JSON datamodelu spraviť Laravel:
 
 - modely
 - migracie
 - policy
+
+*Poznámka: Pre každú odrážku bude zvlášť samotný reflector. Takže ak chcem generovať napr. modely, migrácie a policy tak potrebujem 3 reflectory.*
+
+### 3. krok - Resources Manager
+
+Chcem spravit appku (Quasar App Extension + Electron) ktory bude vediet vytvarat/upravovat resource-modely. Resource moze byt
+jedna-k-jednej s entitami z datamodelu, ale nemusi. Pre jednu entitu z datamodelu moze existovat aj viac resources.
+Napr. pre entitu user mozu byt 3 resources: admin, worker, contractor. Kazdy resource potom moze mat "views" (tabulky)
+a "forms" atd. Neviem, nad tym sa este zamysliet ako to spravit flexibilne.
+
+### 4. krok - Reflector
+
+Sprav CLI tool (v hocijakom jazyku), ktorý bude vedieť na základe JSON resource-modelu spraviť:
+
+- Laravel backend (*toto treba samozrejme "rozdeliť na drobné"*)
+- Quasar frontend (*toto treba samozrejme "rozdeliť na drobné"*)
+
+*Poznámka: Pre každú odrážku bude zvlášť samotný reflector. Takže ak chcem generovať napr. Laravel backend a Quasar frontend tak potrebujem 2 reflectory.*
 
 ---------------
 
