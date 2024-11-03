@@ -22,9 +22,12 @@
         <div class="q-px-lg">
           <pre>entities: {{ node.entities.length }}</pre>
           <q-btn
-            round
-            icon="eva-archive-outline"
+            no-caps
+            unelevated
             size="sm"
+            label="Delete Namespace"
+            color="primary"
+            icon="eva-archive-outline"
             @click="onDeleteNamespace(key)"
           />
         </div>
