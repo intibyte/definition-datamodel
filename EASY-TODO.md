@@ -15,6 +15,11 @@ Chcem spravit appku (Quasar App Extension + Electron) ktora:
 
 ### 2. krok - Reflector
 
+Hmm:
+- Môže yarn watcher spušťať napr PHP skripty?
+- vendor/bin ? zisti ako toto funguje
+- alebo radsej pouzijem NodeJS ?
+
 Sprav CLI tool (v hocijakom jazyku), ktorý bude vedieť na základe JSON datamodelu spraviť Laravel:
 
 - modely
