@@ -5,7 +5,6 @@
 
     <template v-slot:before>
       <namespace-editor
-        class="q-pa-sm"
         v-model:data-model="dataModel"
         v-model:selected-namespace="selectedNamespace"
       />

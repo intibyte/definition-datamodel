@@ -89,7 +89,7 @@ export default configure((ctx) => {
     // https://v2.quasar.dev/quasar-cli-vite/quasar-config-js#framework
     framework: {
       config: {
-        // dark: true
+        dark: true
       },
 
       // iconSet: 'material-icons', // Quasar icon set
