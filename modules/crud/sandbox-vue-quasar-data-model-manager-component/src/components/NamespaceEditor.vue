@@ -1,38 +1,5 @@
 <template>
   <div>
-    <q-btn
-      no-caps
-      unelevated
-      icon="eva-plus"
-      size="sm"
-      label="New namespace"
-      color="primary"
-      @click="onAddNamespace()"
-    />
-<!--    <q-tree-->
-<!--      class="q-mt-sm"-->
-<!--      :nodes="treeNodes"-->
-<!--      node-key="name"-->
-<!--      label-key="name"-->
-<!--      v-model:selected="selectedNamespace"-->
-<!--      selected-color="primary"-->
-<!--      no-nodes-label="No namespaces"-->
-<!--    >-->
-<!--      <template #default-body="{ key, node }">-->
-<!--        <div class="q-px-lg">-->
-<!--          <pre>entities: {{ node.entities.length }}</pre>-->
-<!--          <q-btn-->
-<!--            no-caps-->
-<!--            unelevated-->
-<!--            size="sm"-->
-<!--            label="Delete Namespace"-->
-<!--            color="primary"-->
-<!--            icon="eva-archive-outline"-->
-<!--            @click="onDeleteNamespace(key)"-->
-<!--          />-->
-<!--        </div>-->
-<!--      </template>-->
-<!--    </q-tree>-->
 
     <q-list v-if="Array.isArray(dataModel?.model?.namespaces) && dataModel?.model?.namespaces.length">
       <q-item
@@ -46,9 +13,7 @@
           <q-item-label>{{ namespace.name }}</q-item-label>
         </q-item-section>
         <q-item-section side>
-          <q-btn-group
-            flat
-          >
+          <q-btn-group flat>
             <q-btn
               round
               icon="eva-edit-2-outline"
@@ -59,7 +24,7 @@
             </q-btn>
             <q-btn
               round
-              icon="eva-archive-outline"
+              icon="eva-trash-outline"
               size="sm"
               @click.stop="onDeleteNamespace(namespace)"
             >
@@ -69,6 +34,22 @@
         </q-item-section>
       </q-item>
     </q-list>
+
+    <q-item
+      clickable
+      v-ripple
+      @click="onAddNamespace()"
+      class="bg-dark"
+    >
+      <q-item-section side>
+        <q-icon
+          name="eva-plus"
+        />
+      </q-item-section>
+      <q-item-section>
+        <q-item-label>Add Namespace</q-item-label>
+      </q-item-section>
+    </q-item>
 
   </div>
 </template>
