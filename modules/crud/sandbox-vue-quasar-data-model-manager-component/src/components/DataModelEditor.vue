@@ -2,7 +2,18 @@
   <div class="q-pa-lg">
 
     <div>
-      <div class="text-h5">Namespace: {{ dataModelForSelectedNamespace.name }}</div>
+      <div class="text-h5">
+        Namespace:
+        {{ dataModelForSelectedNamespace.name }}
+        <q-btn
+          round
+          icon="eva-edit-2-outline"
+          size="sm"
+          @click.stop="onRenameNamespace(namespace)"
+        >
+          <q-tooltip>Rename Namespace</q-tooltip>
+        </q-btn>
+      </div>
       <div class="text-subtitle2">Created by {{ dataModelForSelectedNamespace?.meta?.created_by }}</div>
       <div class="text-caption">{{ dataModelForSelectedNamespace?.meta?.description }}</div>
     </div>
